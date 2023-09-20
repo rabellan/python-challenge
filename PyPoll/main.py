@@ -39,6 +39,9 @@ print("Election Results")
 print("-------------------------")
 print(f"Total Votes:  {total_voter_count}")
 print("-------------------------")
+print(f"1st candidate:\n")
+print(f"2nd candidate:\n")
+print(f"3rd candidate:\n")
 
 
 #output file --> ../analysis/poll_analysis_data.txt
@@ -50,3 +53,12 @@ with open(analysis_file, "w") as outfile:
     outfile.write("-------------------------\n")
     outfile.write(f"Total Votes:  {total_voter_count}\n")
     outfile.write("-------------------------\n")
+    outfile.write(f"1st candidate:\n")
+    outfile.write(f"2nd candidate:\n")
+    outfile.write(f"3rd candidate:\n")
+    # outfile.write(f"{votes_per_candidate[0][0][0]}: {first}% ({votes_per_candidate[0][0][1]})\n")
+    # outfile.write(f"{votes_per_candidate[0][1][0]}: {second}% ({votes_per_candidate[0][1][1]})\n")
+    # outfile.write(f"{votes_per_candidate[0][2][0]}: {third}% ({votes_per_candidate[0][2][1]})\n")
+    outfile.write("-------------------------\n")
+    outfile.write(f"Winner: \n")
+    outfile.write("-------------------------\n")  
