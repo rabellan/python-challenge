@@ -1,25 +1,38 @@
-# PyPoll Instructions
-# In this Challenge, you are tasked with helping a small, rural town modernize its vote-counting process.
+# Create a Python script that analyzes the votes and calculates each of the following:
+# -->>  The total number of votes cast
+# -->>  A complete list of candidates who received votes
+# -->>  The percentage of votes each candidate won
+# -->>  The total number of votes each candidate won
+# -->>  The winner of the election based on popular vote
 
-# You will be given a set of poll data called election_data.csv. The dataset is composed of three columns: "Voter ID", "County", and "Candidate". Your task is to create a Python script that analyzes the votes and calculates each of the following values:
+# Import dependencies
+#import os
+import csv
+from pathlib import Path
 
-# The total number of votes cast
+csv_path = Path("Resources/election_data.csv")
 
-# A complete list of candidates who received votes
+with open(csv_path) as csvfile:
 
-# The percentage of votes each candidate won
+    # CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile, delimiter=',')
 
-# The total number of votes each candidate won
+    # Read the header row first (skip this step if there is no header)
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
 
-# The winner of the election based on popular vote
+    # Read each row of data after the header
+    # all_lists = [row for row in csvreader]
+    for row in csvreader:
+        print(row[2], row[1], row[0])
+    # print(all_lists)
 
-# Election Results
-# -------------------------
-# Total Votes: 369711
-# -------------------------
-# Charles Casper Stockham: 23.049% (85213)
-# Diana DeGette: 73.812% (272892)
-# Raymon Anthony Doane: 3.139% (11606)
-# -------------------------
-# Winner: Diana DeGette
-# -------------------------
+
+    # -----
+
+#output file --> ../analysis/poll_analysis_data.txt
+analysis_file = Path("analysis/poll_analysis_data.txt")
+
+with open(analysis_file, "w") as outfile:
+
+    outfile.write("Election Results\n")

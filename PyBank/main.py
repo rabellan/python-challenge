@@ -1,27 +1,46 @@
-# PyBank Instructions
+# Create a Python script that analyzes the PyBank records to calculate each of the following:
+# -->>  The total number of months included in the dataset
+# -->>  The net total amount of "Profit/Losses" over the entire period
+# -->>  The average of the changes in "Profit/Losses" over the entire period
+# -->>  The greatest increase in profits (date and amount) over the entire period
+# -->>  The greatest decrease in losses (date and amount) over the entire period
+# -->>  Print the analysis to the terminal and export a text file with the results
 
-# In this Challenge, you are tasked with creating a Python script to analyze the financial records of your company. You will be given a financial dataset called budget_data.csv. The dataset is composed of two columns: "Date" and "Profit/Losses".
 
-# Your task is to create a Python script that analyzes the records to calculate each of the following values:
+# Import dependencies
+#import os
+import csv
+from pathlib import Path
 
-# The total number of months included in the dataset
+csv_path = Path("Resources/budget_data.csv")
 
-# The net total amount of "Profit/Losses" over the entire period
+with open(csv_path) as csvfile:
 
-# The changes in "Profit/Losses" over the entire period, and then the average of those changes
+    # CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile, delimiter=',')
 
-# The greatest increase in profits (date and amount) over the entire period
+    # Read the header row first (skip this step if there is no header)
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
 
-# The greatest decrease in profits (date and amount) over the entire period
+    # Read each row of data after the header
+    # all_lists = [row for row in csvreader]
+    for row in csvreader:
+        print(row[1], row[0])
+    # print(all_lists)
 
-# Your analysis should align with the following results:
+# # Bank's 'list' variables
+# number_of_months = []
+# profit_loss_changes = []
 
-# Financial Analysis
-# ----------------------------
-# Total Months: 86
-# Total: $22564198
-# Average Change: $-8311.11
-# Greatest Increase in Profits: Aug-16 ($1862002)
-# Greatest Decrease in Profits: Feb-14 ($-1825558)
+# net_profit_loss = 0
+# previous_month_profit_loss = 0
+# current_month_profit_loss = 0
+# profit_loss_change = 0
+# months_counter = 0
 
-# In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+#output file --> ../analysis/analysis_data.txt
+analysis_file = Path("analysis/budget_analysis_data.txt")
+with open(analysis_file, "w") as outfile:
+
+    outfile.write("Financial Analysis\n")
