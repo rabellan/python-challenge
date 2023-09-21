@@ -8,7 +8,7 @@ from pathlib import Path
 import collections
 from collections import Counter
 
-# Set PyPoll's variable sets
+# Set PyPoll's variable sets. The variable, total_voters[] is key for the correct calculation throught the code
 total_voters = []
 vote_count_per_candidate = []
 # Set the path by grabbing the Path(put your path here)
@@ -37,6 +37,7 @@ with open(csv_path, newline="") as csvfile:
     vote_count_per_candidate.append(cleaned_candidate_list.most_common())
 
     # calculate the candidate vote percentage to the third decimal place
+    # percentage = (votes per candidate x 100) / number of votes
     for item in vote_count_per_candidate:
        
         first_place_percentage = format((item[0][1])*100/(sum(cleaned_candidate_list.values())),'.3f')
