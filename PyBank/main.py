@@ -45,12 +45,6 @@ with open(csv_path) as csvfile:
         # Store the current month's profit/loss for the next iteration
         previous_month_profit_loss = profit_loss
 
-# Calculate the average change in profit/loss
-average_change = round(sum(change_in_profit_losses) / len(change_in_profit_losses), 2)
-
-# Calculate the total number of months
-total_months = len(months)
-
 # Find greatest increase & decrease in profits
 max_increase = max(change_in_profit_losses)
 max_decrease = min(change_in_profit_losses)
@@ -59,12 +53,18 @@ max_decrease = min(change_in_profit_losses)
 max_increase_month = months[change_in_profit_losses.index(max_increase)]
 max_decrease_month = months[change_in_profit_losses.index(max_decrease)]
 
+# Calculate the average change in profit/loss
+avg_change = round(sum(change_in_profit_losses) / len(change_in_profit_losses), 2)
+
+# Calculate the total number of months
+total_months = len(months)
+
 # Print the results
 print("Financial Analysis")
 print("----------------------------")
 print(f"Total Months: {total_months}")
 print(f"Total: ${overall_profit_losses}")
-print(f"Average Change: ${average_change}")
+print(f"Average Change: ${avg_change}")
 print(f"Greatest Increase in Profits: {max_increase_month} (${max_increase})")
 print(f"Greatest Decrease in Profits: {max_decrease_month} (${max_decrease})")
 
@@ -74,6 +74,6 @@ with open("analysis/budget_analysis.txt", "w") as textfile:
     textfile.write("----------------------------\n")
     textfile.write(f"Total Months: {total_months}\n")
     textfile.write(f"Total: ${overall_profit_losses}\n")
-    textfile.write(f"Average Change: ${average_change}\n")
+    textfile.write(f"Average Change: ${avg_change}\n")
     textfile.write(f"Greatest Increase in Profits: {max_increase_month} (${max_increase})\n")
     textfile.write(f"Greatest Decrease in Profits: {max_decrease_month} (${max_decrease})\n")
