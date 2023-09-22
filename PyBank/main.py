@@ -24,17 +24,20 @@ months = []
 # Read the CSV file
 with open(csv_path) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
-    next(csvreader)  # Skip the header row
+    
+    # Skip the header!
+    next(csvreader)
 
     for row in csvreader:
         # Extract data from the current row
         date, profit_loss = row[0], int(row[1])
+        # this is the month accumulator
+        months.append(date)
 
         # Calculate the change in profit/loss since the previous month
         if previous_month_profit_loss != 0:
             change = profit_loss - previous_month_profit_loss
             change_in_profit_losses.append(change)
-            months.append(date)
 
         # Update the overall profit/loss
         overall_profit_losses += profit_loss
@@ -66,7 +69,7 @@ print(f"Greatest Increase in Profits: {max_increase_month} (${max_increase})")
 print(f"Greatest Decrease in Profits: {max_decrease_month} (${max_decrease})")
 
 # Write the results to an output file
-with open("budget_analysis.txt", "w") as textfile:
+with open("analysis/budget_analysis.txt", "w") as textfile:
     textfile.write("Financial Analysis\n")
     textfile.write("----------------------------\n")
     textfile.write(f"Total Months: {total_months}\n")
